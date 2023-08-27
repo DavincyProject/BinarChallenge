@@ -3,7 +3,7 @@ Hari ini Toko buku milik Ibu Daniela berhasil menjual banyak sekali buku - buku 
 buku - buku novel yang dijual di Toko buku milik Ibu Daniela, dalam format array of object.
 Tugas kamu adalah membuat sebuah function yang berfungsi membantu Ibu Daniela untuk mendapatkan informasi berupa Total 
 Keuntungan, Total Modal, Produk Buku Terlaris, Penulis Buku terlaris dan Persentase Keuntungan dari data penjualan yang telah
-disediakan diatas. funtion yang kamu buat ini akan me -return sebuah data yang berbentuk sebuah object yang dari beberapa properti.
+disediakan diatas. funtion yang kamu buat ini akan me-return sebuah data yang berbentuk sebuah object yang dari beberapa properti.
 
 Function ini akan menerima satu parameter, yaitu:
 dataPenjualan ⇒ Array yang berisi beberapa object, object terdiri dari properti yang memiliki informasi penjualan product.
@@ -21,7 +21,7 @@ Kriteria function:
 // jadi itu bukan hasil perhitungan yang sebenarnya
 
 // pada properti totalkeuntungan dan totalModal, nilai yang dihasilkan harus dalam
-// berupa format rupiah, contoh totalKeuntungan 14650000 di jadkan format rupiah
+// berupa format rupiah, contoh totalKeuntungan 14650000 di jadikan format rupiah
 // menjadi 'Rp. 14.650.000'
 // {
 //     totalKeuntungan: 'Rp. 10.000.000', Harus dalam format rupiah
@@ -83,23 +83,25 @@ function getInfoPenjualan(dataPenjualanNovel) {
     let maxTerjual = 0;
 
     dataPenjualanNovel.forEach((item) => {
-        const { hargaJual, hargaBeli, totalTerjual, namaProduk, penulis } = item;
+        const { hargaJual, hargaBeli, totalTerjual, namaProduk, penulis, sisaStok } = item;
+
         const keuntungan = (hargaJual - hargaBeli) * totalTerjual;
         totalKeuntungan += keuntungan;
-        totalModal += hargaBeli * totalTerjual;
+        totalModal += (totalTerjual + sisaStok) * hargaBeli;
 
         if (totalTerjual > maxTerjual) {
             maxTerjual = totalTerjual;
             produkBukuTerlaris = namaProduk;
             penulisTerlaris = penulis;
         } else if (totalTerjual === maxTerjual) {
+            produkBukuTerlaris += `, ${namaProduk}`;
             penulisTerlaris += `, ${penulis}`;
         }
     });
 
-    const persentaseKeuntungan = ((totalKeuntungan / totalModal) * 100).toFixed(2) + "%";
-    totalKeuntungan = `Rp. ${totalKeuntungan.toLocaleString('id-ID')}`;
-    totalModal = `Rp. ${totalModal.toLocaleString('id-ID')}`;
+    persentaseKeuntungan = ((totalKeuntungan / totalModal) * 100).toFixed(2) + "%";
+    totalKeuntungan = `Rp.${totalKeuntungan.toLocaleString('id-ID')} `;
+    totalModal = `Rp.${totalModal.toLocaleString('id-ID')} `;
 
     return {
         totalKeuntungan,

@@ -16,7 +16,7 @@ const checkTypeNumber = (givenNumber) => {
         return "Error : Invalid data type";
     }
 
-    if (givenNumber === undefined) {
+    if (givenNumber == '') {
         return "Error : Bro Where is the parameter?";
     }
 
