@@ -78,26 +78,37 @@ function getInfoPenjualan(dataPenjualanNovel) {
 
     let totalKeuntungan = 0;
     let totalModal = 0;
-    let produkBukuTerlaris = "";
-    let penulisTerlaris = "";
-    let maxTerjual = 0;
+    let produkBukuTerlaris = { totalTerjual: 0 };
+    const penulisTerlarisMap = new Map();
 
     dataPenjualanNovel.forEach((item) => {
         const { hargaJual, hargaBeli, totalTerjual, namaProduk, penulis, sisaStok } = item;
 
         const keuntungan = (hargaJual - hargaBeli) * totalTerjual;
+
         totalKeuntungan += keuntungan;
         totalModal += (totalTerjual + sisaStok) * hargaBeli;
 
-        if (totalTerjual > maxTerjual) {
-            maxTerjual = totalTerjual;
-            produkBukuTerlaris = namaProduk;
-            penulisTerlaris = penulis;
-        } else if (totalTerjual === maxTerjual) {
-            produkBukuTerlaris += `, ${namaProduk}`;
-            penulisTerlaris += `, ${penulis}`;
+        if (totalTerjual > produkBukuTerlaris.totalTerjual) {
+            produkBukuTerlaris = { totalTerjual, namaProduk };
+        }
+
+        if (penulisTerlarisMap.has(penulis)) {
+            penulisTerlarisMap.set(penulis, penulisTerlarisMap.get(penulis) + totalTerjual);
+        } else {
+            penulisTerlarisMap.set(penulis, totalTerjual);
         }
     });
+
+    let totalPenulisTerlarisTerjual = 0;
+    let penulisTerlaris = "";
+
+    penulisTerlarisMap.forEach((terjual, penulis) => {
+        if (terjual > totalPenulisTerlarisTerjual) {
+            totalPenulisTerlarisTerjual = terjual;
+            penulisTerlaris = penulis;
+        }
+    })
 
     persentaseKeuntungan = ((totalKeuntungan / totalModal) * 100).toFixed(2) + "%";
     totalKeuntungan = `Rp.${totalKeuntungan.toLocaleString('id-ID')} `;
@@ -107,7 +118,7 @@ function getInfoPenjualan(dataPenjualanNovel) {
         totalKeuntungan,
         totalModal,
         persentaseKeuntungan,
-        produkBukuTerlaris,
+        produkBukuTerlaris: produkBukuTerlaris.namaProduk,
         penulisTerlaris
     }
 }
