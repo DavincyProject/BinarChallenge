@@ -11,7 +11,7 @@ Kriteria function yang harus kamu buat:
  • function ini harus memiliki validasi terhadap tipe data dari parameter yang diterima.
 */
 
-const checkTypeNumber = (givenNumber) => {
+function checkTypeNumber(givenNumber) {
     if (typeof givenNumber !== 'number') {
         return "Error : Invalid data type";
     } else if (givenNumber === undefined) {
