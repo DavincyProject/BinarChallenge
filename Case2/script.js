@@ -14,13 +14,11 @@ Kriteria function yang harus kamu buat:
 const checkTypeNumber = (givenNumber) => {
     if (typeof givenNumber !== 'number') {
         return "Error : Invalid data type";
-    } else if (givenNumber === null || givenNumber === undefined) {
+    } else if (givenNumber === undefined) {
         return "Error : Bro Where is the parameter?";
     }
 
-    if (givenNumber) {
-        return givenNumber % 2 === 0 ? "GENAP" : "GANJIL";
-    }
+    return givenNumber % 2 === 0 ? "GENAP" : "GANJIL";
 }
 
 console.log(checkTypeNumber(10)); // GENAP
