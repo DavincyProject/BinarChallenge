@@ -12,10 +12,12 @@ Kriteria function yang harus kamu buat:
 */
 
 function checkTypeNumber(givenNumber) {
+    if (givenNumber === undefined) {
+        return "Error : Bro Where is the parameter?";
+    }
+
     if (typeof givenNumber !== 'number') {
         return "Error : Invalid data type";
-    } else if (givenNumber === undefined) {
-        return "Error : Bro Where is the parameter?";
     }
 
     return givenNumber % 2 === 0 ? "GENAP" : "GANJIL";
