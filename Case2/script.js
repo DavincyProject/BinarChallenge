@@ -14,9 +14,7 @@ Kriteria function yang harus kamu buat:
 function checkTypeNumber(givenNumber) {
     if (givenNumber === undefined) {
         return "Error : Bro Where is the parameter?";
-    }
-
-    if (typeof givenNumber !== 'number') {
+    } else if (typeof givenNumber !== 'number') {
         return "Error : Invalid data type";
     }
 
