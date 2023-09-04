@@ -68,6 +68,15 @@ const dataPenjualanNovel = [
         totalTerjual: 20,
         sisaStok: 56,
     },
+    // {
+    //     idProduct: 'BOOK002941',
+    //     namaProduk: 'Garis Takdir',
+    //     penulis: 'Fiersa Besari',
+    //     hargaBeli: 67000,
+    //     hargaJual: 99000,
+    //     totalTerjual: 213,
+    //     sisaStok: 5,
+    // },
 ];
 
 function getInfoPenjualan(dataPenjualanNovel) {
@@ -85,8 +94,8 @@ function getInfoPenjualan(dataPenjualanNovel) {
         const { hargaJual, hargaBeli, totalTerjual, namaProduk, penulis, sisaStok } = item;
 
         const keuntungan = (hargaJual - hargaBeli) * totalTerjual;
-
         totalKeuntungan += keuntungan;
+
         totalModal += (totalTerjual + sisaStok) * hargaBeli;
 
         if (totalTerjual > produkBukuTerlaris.totalTerjual) {
