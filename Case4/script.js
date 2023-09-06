@@ -45,11 +45,16 @@ const dataPenjualanPakAldi = [
 ]
 
 function getTotalPenjualan(dataPenjualanPakAldi) {
-    let totalPenjualan = 0
-    for (let i = 0; i < dataPenjualanPakAldi.length; i++) {
-        totalPenjualan += dataPenjualanPakAldi[i].totalTerjual
+    if (!Array.isArray(dataPenjualanPakAldi)) {
+        return "Error: Parameter tidak valid";
+    } else {
+        let totalPenjualan = 0
+        for (let i = 0; i < dataPenjualanPakAldi.length; i++) {
+            totalPenjualan += dataPenjualanPakAldi[i].totalTerjual
+        }
+        return totalPenjualan;
     }
-    return totalPenjualan;
 }
+
 
 console.log(getTotalPenjualan(dataPenjualanPakAldi));
