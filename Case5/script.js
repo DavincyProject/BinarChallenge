@@ -32,104 +32,115 @@ Kriteria function:
 // }
 
 const dataPenjualanNovel = [
-    {
-        idProduct: 'BOOK002421',
-        namaProduk: 'Pulang - Pergi',
-        penulis: 'Tere Liye',
-        hargaBeli: 60000,
-        hargaJual: 86000,
-        totalTerjual: 150,
-        sisaStok: 17,
-    },
-    {
-        idProduct: 'BOOK002351',
-        namaProduk: 'Selamat Tinggal',
-        penulis: 'Tere Liye',
-        hargaBeli: 75000,
-        hargaJual: 103000,
-        totalTerjual: 171,
-        sisaStok: 20,
-    },
-    {
-        idProduct: 'BOOK002941',
-        namaProduk: 'Garis Waktu',
-        penulis: 'Fiersa Besari',
-        hargaBeli: 67000,
-        hargaJual: 99000,
-        totalTerjual: 213,
-        sisaStok: 5,
-    },
-    {
-        idProduct: 'BOOK002941',
-        namaProduk: 'Laskar Pelangi',
-        penulis: 'Andrea Hirata',
-        hargaBeli: 55000,
-        hargaJual: 68000,
-        totalTerjual: 20,
-        sisaStok: 56,
-    },
-    // {
-    //     idProduct: 'BOOK002941',
-    //     namaProduk: 'Garis Takdir',
-    //     penulis: 'Fiersa Besari',
-    //     hargaBeli: 67000,
-    //     hargaJual: 99000,
-    //     totalTerjual: 213,
-    //     sisaStok: 5,
-    // },
+  {
+    idProduct: "BOOK002421",
+    namaProduk: "Pulang - Pergi",
+    penulis: "Tere Liye",
+    hargaBeli: 60000,
+    hargaJual: 86000,
+    totalTerjual: 150,
+    sisaStok: 17,
+  },
+  {
+    idProduct: "BOOK002351",
+    namaProduk: "Selamat Tinggal",
+    penulis: "Tere Liye",
+    hargaBeli: 75000,
+    hargaJual: 103000,
+    totalTerjual: 171,
+    sisaStok: 20,
+  },
+  {
+    idProduct: "BOOK002941",
+    namaProduk: "Garis Waktu",
+    penulis: "Fiersa Besari",
+    hargaBeli: 67000,
+    hargaJual: 99000,
+    totalTerjual: 213,
+    sisaStok: 5,
+  },
+  {
+    idProduct: "BOOK002941",
+    namaProduk: "Laskar Pelangi",
+    penulis: "Andrea Hirata",
+    hargaBeli: 55000,
+    hargaJual: 68000,
+    totalTerjual: 20,
+    sisaStok: 56,
+  },
+  // {
+  //     idProduct: 'BOOK002941',
+  //     namaProduk: 'Garis Takdir',
+  //     penulis: 'Fiersa Besari',
+  //     hargaBeli: 67000,
+  //     hargaJual: 99000,
+  //     totalTerjual: 213,
+  //     sisaStok: 5,
+  // },
 ];
 
 function getInfoPenjualan(dataPenjualanNovel) {
-    //validasi tipe data
-    if (!Array.isArray(dataPenjualanNovel)) {
-        return "Error: Parameter tidak valid";
+  //validasi tipe data
+  if (!Array.isArray(dataPenjualanNovel)) {
+    return "Error: Parameter tidak valid";
+  }
+
+  let totalKeuntungan = 0;
+  let totalModal = 0;
+  let produkBukuTerlaris = { totalTerjual: 0 };
+  const penulisTerlarisMap = new Map();
+
+  dataPenjualanNovel.forEach((item) => {
+    const {
+      hargaJual,
+      hargaBeli,
+      totalTerjual,
+      namaProduk,
+      penulis,
+      sisaStok,
+    } = item;
+
+    const keuntungan = (hargaJual - hargaBeli) * totalTerjual;
+    totalKeuntungan += keuntungan;
+
+    totalModal += (totalTerjual + sisaStok) * hargaBeli;
+
+    if (totalTerjual > produkBukuTerlaris.totalTerjual) {
+      produkBukuTerlaris = { totalTerjual, namaProduk };
     }
 
-    let totalKeuntungan = 0;
-    let totalModal = 0;
-    let produkBukuTerlaris = { totalTerjual: 0 };
-    const penulisTerlarisMap = new Map();
-
-    dataPenjualanNovel.forEach((item) => {
-        const { hargaJual, hargaBeli, totalTerjual, namaProduk, penulis, sisaStok } = item;
-
-        const keuntungan = (hargaJual - hargaBeli) * totalTerjual;
-        totalKeuntungan += keuntungan;
-
-        totalModal += (totalTerjual + sisaStok) * hargaBeli;
-
-        if (totalTerjual > produkBukuTerlaris.totalTerjual) {
-            produkBukuTerlaris = { totalTerjual, namaProduk };
-        }
-
-        if (penulisTerlarisMap.has(penulis)) {
-            penulisTerlarisMap.set(penulis, penulisTerlarisMap.get(penulis) + totalTerjual);
-        } else {
-            penulisTerlarisMap.set(penulis, totalTerjual);
-        }
-    });
-
-    let totalPenulisTerlarisTerjual = 0;
-    let penulisTerlaris = "";
-
-    penulisTerlarisMap.forEach((terjual, penulis) => {
-        if (terjual > totalPenulisTerlarisTerjual) {
-            totalPenulisTerlarisTerjual = terjual;
-            penulisTerlaris = penulis;
-        }
-    })
-
-    persentaseKeuntungan = ((totalKeuntungan / totalModal) * 100).toFixed(2) + "%";
-    totalKeuntungan = `Rp.${totalKeuntungan.toLocaleString('id-ID')} `;
-    totalModal = `Rp.${totalModal.toLocaleString('id-ID')} `;
-
-    return {
-        totalKeuntungan,
-        totalModal,
-        persentaseKeuntungan,
-        produkBukuTerlaris: produkBukuTerlaris.namaProduk,
-        penulisTerlaris
+    if (penulisTerlarisMap.has(penulis)) {
+      penulisTerlarisMap.set(
+        penulis,
+        penulisTerlarisMap.get(penulis) + totalTerjual
+      );
+    } else {
+      penulisTerlarisMap.set(penulis, totalTerjual);
     }
+  });
+
+  let totalPenulisTerlarisTerjual = 0;
+  let penulisTerlaris = "";
+
+  penulisTerlarisMap.forEach((totalTerjual, penulis) => {
+    if (totalTerjual > totalPenulisTerlarisTerjual) {
+      totalPenulisTerlarisTerjual = totalTerjual;
+      penulisTerlaris = penulis;
+    }
+  });
+
+  persentaseKeuntungan =
+    ((totalKeuntungan / totalModal) * 100).toFixed(2) + "%";
+  totalKeuntungan = `Rp.${totalKeuntungan.toLocaleString("id-ID")}`;
+  totalModal = `Rp.${totalModal.toLocaleString("id-ID")}`;
+
+  return {
+    totalKeuntungan,
+    totalModal,
+    persentaseKeuntungan,
+    produkBukuTerlaris: produkBukuTerlaris.namaProduk,
+    penulisTerlaris,
+  };
 }
 
 console.log(getInfoPenjualan(dataPenjualanNovel));

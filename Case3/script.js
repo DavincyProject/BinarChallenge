@@ -15,12 +15,13 @@ dataNumbers ⇒ Array yang berisi beberapa angka Kriteria function:
 */
 
 function getAngkaTerbesarKedua(dataArray) {
-    if (!Array.isArray(dataArray) || dataArray.length < 2) { //mengecek apakah parameter yang dikirim berupa array & jika array kurang dari 2 angka
-        return "Error: Parameter tidak valid";
-    }
+  if (!Array.isArray(dataArray) || dataArray.length < 2) {
+    //mengecek apakah parameter yang dikirim berupa array & jika array kurang dari 2 angka
+    return "Error: Parameter tidak valid";
+  }
 
-    const arraySort = dataArray.sort((a, b) => b - a); //mengurutkan arraynya kemudian dibalikan mulai dari besar ke kecil
-    return arraySort[1];
+  const arraySort = dataArray.sort((a, b) => b - a); //mengurutkan arraynya kemudian dibalikan mulai dari besar ke kecil
+  return arraySort[1];
 }
 
 const dataAray = [9, 4, 7, 7, 4, 3, 2, 2, 8];

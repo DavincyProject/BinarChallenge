@@ -8,11 +8,12 @@ Function ini akan menerima 3 parameter, yaitu :
 */
 
 function changeWord(selectedText, changedText, text) {
-    return text.replace(selectedText, changedText);
+  return text.replaceAll(selectedText, changedText);
 }
 
 let kalimat1 = "Andini sangat mencintai kamu selamanya";
-let kalimat2 = "Gunung bromo tak akan mampu menggambarkan besarnya cintaku padamu";
+let kalimat2 =
+  "Gunung bromo tak akan mampu menggambarkan besarnya cintaku padamu";
 
 console.log(changeWord("mencintai", "membenci", kalimat1));
 console.log(changeWord("bromo", "everest", kalimat2));
