@@ -1,4 +1,6 @@
 /* 
+⚠️⚠️ entah ada yang sama atau tidak codingannya, tetapi code dibawah
+murni dibuat dengan basic yang dipelajari di materi ⚠️⚠️
 Buatlah sebuah function yang berfungsi untuk mendapatkan angka terbesar kedua dari sebuah array.
 Misal diberikan sebuah array yang terdiri dari beberapa angka[2, 3, 5, 6, 6, 4], berdasarkan data 
 dari array tersebut dapat kita simpulkan bahwasanya angka terbesar dari array tersebut adalah 6, 

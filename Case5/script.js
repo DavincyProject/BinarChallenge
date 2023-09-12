@@ -1,4 +1,7 @@
 /* 
+⚠️⚠️ entah ada yang sama atau tidak codingannya, tetapi code dibawah
+murni dibuat dengan basic yang dipelajari di materi dan sedikit bantuan chat gpt saat terjadi error⚠️⚠️
+
 Hari ini Toko buku milik Ibu Daniela berhasil menjual banyak sekali buku - buku novel.Gambar disamping adalah data penjualan
 buku - buku novel yang dijual di Toko buku milik Ibu Daniela, dalam format array of object.
 Tugas kamu adalah membuat sebuah function yang berfungsi membantu Ibu Daniela untuk mendapatkan informasi berupa Total 

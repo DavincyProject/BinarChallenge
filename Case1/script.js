@@ -1,4 +1,6 @@
 /*  
+⚠️⚠️ entah ada yang sama atau tidak codingannya, tetapi code dibawah
+murni dibuat dengan basic yang dipelajari di materi ⚠️⚠️
 Buatlah sebuah function dengan nama changeWord yang berfungsi untuk menggantikan sebuah kata
 didalam sebuah kalimat.
 Function ini akan menerima 3 parameter, yaitu :
@@ -8,7 +10,7 @@ Function ini akan menerima 3 parameter, yaitu :
 */
 
 function changeWord(selectedText, changedText, text) {
-  return text.replaceAll(selectedText, changedText);
+  return text.replaceAll(selectedText, changedText); //merubah replace menjadi replaceAll sesuai hasil pembahasan materi agar semua text yang diselect akan berubah semua
 }
 
 let kalimat1 = "Andini sangat mencintai kamu selamanya";
